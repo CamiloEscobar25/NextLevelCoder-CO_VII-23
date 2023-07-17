@@ -9,9 +9,9 @@ from dino_runner.utils.constants import (
 
 class Dinosaur(Sprite):
 
-    POS_X = 80
-    POS_Y = 300
-    DUCK_POS_Y = 340
+    POS_X = 50
+    POS_Y =  430
+    DUCK_POS_Y = 470
     JUMP_VEL = 8.5
 
     def __init__(self):
