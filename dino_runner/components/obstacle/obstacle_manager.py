@@ -1,6 +1,9 @@
+import random
 
-
-from dino_runner.components.obstacle.cactus import Cactus
+from dino_runner.components.obstacle.lave import Lave
+from dino_runner.components.obstacle.plant import Plant
+from dino_runner.components.obstacle.bird import Bird
+from dino_runner.components.obstacle.cactus import Large_Cactus, Small_Cactus
 
 
 class ObstacleManager:
@@ -15,7 +18,8 @@ class ObstacleManager:
         self.has_obstacle = self.obstacle.update(game.game_speed)
 
     def create_obstacle(self):
-        self.obstacle = Cactus()
+        obstacles = [Plant(), Bird(), Large_Cactus(), Small_Cactus(), Lave()]
+        self.obstacle = random.choice(obstacles)
         self.has_obstacle = True
 
 
