@@ -1,4 +1,3 @@
-import random
 from dino_runner.components.obstacle.obstacle import Obstacle
 from dino_runner.utils.constants import LAVE
 

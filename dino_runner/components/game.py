@@ -1,10 +1,11 @@
 import pygame
 import random
 
-
+from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
+from dino_runner.components.powerups.powerup_manager import PowerUpManager
 from dino_runner.utils.constants import  BG_city, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from dino_runner.components.dinosaur import Dinosaur
-from dino_runner.components.Clouds import Cloud
+from dino_runner.components.cloud import Cloud
 from dino_runner.components.obstacle.obstacle_manager import ObstacleManager
 from dino_runner.components.powerups.powerup_manager import PowerUpManager
 
@@ -20,7 +21,7 @@ class Game:
         self.x_pos_bg = 0
         self.y_pos_bg = 0
         self.player = Dinosaur()
-        self.sky_list = pygame.sprite.Group()
+        self.cloud_list = pygame.sprite.Group()
         self.obstacle_manager = ObstacleManager()
         self.powerup_manager = PowerUpManager()
         self.score = 0
@@ -30,13 +31,10 @@ class Game:
         self.playing = True
         for i in range(5):
             CLOUD = Cloud()
-            CLOUD.rect.x = random.randrange(0, 1100, 300)
-            CLOUD.rect.y = random.randrange(20)
-            self.sky_list.add(CLOUD)
-
-
+            CLOUD.rect.x = random.randint(0, 1100)
+            CLOUD.rect.y = random.randint(20, 100)
+            self.cloud_list.add(CLOUD)
         while self.playing:
-
             self.events()
             self.update()
             self.draw()
@@ -52,9 +50,8 @@ class Game:
         self.obstacle_manager.update(self)
         self.powerup_manager.update(self)
         self.increase_score()
-        for sky in self.sky_list:
-            sky.update()
-        
+        for cloud in self.cloud_list:
+            cloud.update()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -63,7 +60,7 @@ class Game:
         self.player.draw(self.screen)
         self.powerup_manager.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
-        self.sky_list.draw(self.screen)
+        self.cloud_list.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 

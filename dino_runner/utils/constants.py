@@ -74,6 +74,8 @@ LAVE = [
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
+JUMP = pygame.image.load(os.path.join(IMG_DIR, 'Other/Jump.png'))
+SPEED = pygame.image.load(os.path.join(IMG_DIR, 'Other/Speed.png'))
 
 BG_city = pygame.image.load(os.path.join(IMG_DIR, 'Other/BGcity.jpg'))
 
