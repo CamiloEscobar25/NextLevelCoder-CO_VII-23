@@ -1,7 +1,8 @@
 from dino_runner.components.powerups.powerup import PowerUp
-from dino_runner.utils.constants import SHIELD
+from dino_runner.utils.constants import SHIELD, SHIELD_TYPE
 
 class Shield(PowerUp):
     def __init__(self):
         selected_image = SHIELD
         super().__init__(selected_image)
+        self.type = SHIELD_TYPE

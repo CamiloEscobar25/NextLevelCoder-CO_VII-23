@@ -2,9 +2,14 @@ import pygame
 
 from pygame.sprite import Sprite
 from dino_runner.utils.constants import (
+    DUCKING_SHIELD,
+    JUMPING_SHIELD,
     RUNNING,
     DUCKING,
-    JUMPING
+    JUMPING,
+    DEFAULT_TYPE,
+    RUNNING_SHIELD,
+    SHIELD_TYPE
 )
 
 class Dinosaur(Sprite):
@@ -15,7 +20,12 @@ class Dinosaur(Sprite):
     JUMP_VEL = 8.5
 
     def __init__(self):
-        self.image = RUNNING[0]
+        self.running_img = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
+        self.jumping_img = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
+        self.ducking_img = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
+        self.type = DEFAULT_TYPE
+
+        self.image = self.running_img[self.type][0]
         self.rect = self.image.get_rect()
         self.rect.x = self.POS_X
         self.rect.y = self.POS_Y
@@ -24,6 +34,13 @@ class Dinosaur(Sprite):
         self.ducking = False
         self.jumping = False
         self.jumping_velocity = self.JUMP_VEL
+        self.setup_states()
+
+
+    def setup_states(self):
+        self.has_powerup = False
+        self.has_shield = False
+
 
     def update(self, user_input):
         if self.jumping:
@@ -53,14 +70,14 @@ class Dinosaur(Sprite):
         screen.blit(self.image, self.rect)
 
     def run(self):
-        self.image = RUNNING[0] if self.step_index < 5 else RUNNING[1]
+        self.image = self.running_img[self.type][self.step_index // 5]
         self.rect = self.image.get_rect()
         self.rect.x = self.POS_X
         self.rect.y = self.POS_Y
         self.step_index += 1
 
     def jump(self):
-        self.image = JUMPING
+        self.image = self.jumping_img[self.type]
         if self.jumping:
             self.rect.y -= self.jumping_velocity * 4
             self.jumping_velocity -= 0.8
@@ -70,7 +87,7 @@ class Dinosaur(Sprite):
             self.jumping_velocity = self.JUMP_VEL
     
     def duck(self):
-        self.image = DUCKING[0] if self.step_index < 5 else DUCKING[1]
+        self.image = self.ducking_img[self.type][self.step_index // 5]
         self.rect = self.image.get_rect()
         self.rect.x = self.POS_X
         self.rect.y = self.DUCK_POS_Y

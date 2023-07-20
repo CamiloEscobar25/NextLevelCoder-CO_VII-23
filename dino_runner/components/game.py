@@ -29,10 +29,10 @@ class Game:
     def run(self):
         # Game loop: events - update - draw
         self.playing = True
-        for i in range(5):
+        for i in range(7):
             CLOUD = Cloud()
             CLOUD.rect.x = random.randint(0, 1100)
-            CLOUD.rect.y = random.randint(20, 100)
+            CLOUD.rect.y = random.randint(20, 50)
             self.cloud_list.add(CLOUD)
         while self.playing:
             self.events()
