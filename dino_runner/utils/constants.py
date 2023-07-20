@@ -1,4 +1,5 @@
 import pygame
+import pygame.mixer
 import os
 
 # Global Constants
@@ -83,3 +84,11 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"
+
+pygame.mixer.init()
+
+SOUND_JUMP = pygame.mixer.Sound(os.path.abspath(os.path.join(IMG_DIR, 'Sounds', 'Jump.mp3')))
+SOUND_POWERUP = pygame.mixer.Sound(os.path.abspath(os.path.join(IMG_DIR, 'Sounds', 'Powerup.mp3')))
+SOUND_DEAD = pygame.mixer.Sound(os.path.abspath(os.path.join(IMG_DIR, 'Sounds', 'Game Over.mp3')))
+SOUND_BACKGROUND = pygame.mixer.Sound(os.path.abspath(os.path.join(IMG_DIR, 'Sounds', 'Background.mp3')))
+SOUND_DAMAGE = pygame.mixer.Sound(os.path.abspath(os.path.join(IMG_DIR, 'Sounds', 'Damage.mp3')))
